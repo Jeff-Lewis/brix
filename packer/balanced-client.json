@@ -75,10 +75,10 @@
         {
             "type": "shell",
             "inline": [
-                "apt-get -y update",
-                "apt-get -y install linux-image-generic-lts-raring",
-                "apt-get -y install linux-headers-generic-lts-raring",
-                "reboot",
+                "sudo apt-get -y update",
+                "sudo apt-get -y install linux-image-generic-lts-raring",
+                "sudo apt-get -y install linux-headers-generic-lts-raring",
+                "sudo reboot",
                 "sleep 60"
             ]
         }

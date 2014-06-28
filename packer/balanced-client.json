@@ -70,6 +70,16 @@
         {
             "type": "shell",
             "script": "init.sh"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get -y update",
+                "apt-get -y install linux-image-generic-lts-raring",
+                "apt-get -y install linux-headers-generic-lts-raring",
+                "reboot",
+                "sleep 60"
+            ]
         }
     ]
 }

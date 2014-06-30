@@ -20,7 +20,8 @@
             "ami_name": "Balanced Chef-Client Ubuntu 12.04 (EBS store) {{isotime | clean_ami_name}}",
             "tags": {
                 "OS_Version": "ubuntu",
-                "Release": "12.04"
+                "Release": "12.04",
+                "Linux_Kernel": "3.8.0"
             }
         }
     ],
@@ -70,6 +71,16 @@
         {
             "type": "shell",
             "script": "init.sh"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt-get -y update",
+                "sudo apt-get -y install linux-image-generic-lts-raring",
+                "sudo apt-get -y install linux-headers-generic-lts-raring",
+                "sudo reboot",
+                "sleep 60"
+            ]
         }
     ]
 }

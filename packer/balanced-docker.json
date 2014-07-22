@@ -1,0 +1,51 @@
+{
+    "variables": {
+        "aws_access_key_id": "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_access_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+        "aws_account_id": "4819-1673-9571",
+        "s3_bucket": "balanced-amis",
+        "x509_cert_path": "{{pwd}}/balanced-aws.crt",
+        "x509_key_path": "{{pwd}}/balanced-aws.key"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key_id`}}",
+            "secret_key": "{{user `aws_secret_access_key`}}",
+            "region": "us-east-1",
+            "ami_regions": ["us-west-1", "us-west-2"],
+            "source_ami": "ami-a02be5c8",
+            "instance_type": "m3.xlarge",
+            "ssh_username": "ubuntu",
+            "ami_name": "Balanced Docker Ubuntu 14.04 (EBS store) {{isotime | clean_ami_name}}",
+            "tags": {
+                "OS_Version": "ubuntu",
+                "Release": "14.04",
+                "Linux_Kernel": "3.8.0"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "set -e -x",
+                "sleep 60 # Wait for init scripts et al to finish"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "aws-cfn-bootstrap-20140311.tar.gz",
+            "destination": "/tmp/aws-cfn-bootstrap-20140311.tar.gz"
+        },
+        {
+            "type": "file",
+            "source": "jq",
+            "destination": "/tmp/jq"
+        },
+        {
+            "type": "shell",
+            "script": "init_docker.sh"
+        }
+    ]
+}

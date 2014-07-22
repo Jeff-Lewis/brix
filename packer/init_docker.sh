@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
+# Try to fix stupid grub upgrading prompt issue
+sudo rm /boot/grub/menu.lst
+
+
 # Install ec2-ami-tools
 sudo apt-get update -y
 sudo apt-get upgrade -y
@@ -40,6 +44,9 @@ sudo chown -R root:root /opt/ec2-ami-tools
 
 # more bootstrapping
 sudo apt-get -y install python-pip
+# Notice: need to remove old requests for python-pip because this bug
+# https://bugs.launchpad.net/ubuntu/+source/python-pip/+bug/1306991
+sudo rm -rf /usr/local/lib/python2.7/dist-packages/requests
 sudo pip install /tmp/aws-cfn-bootstrap-20140311.tar.gz
 sudo pip install awscli
 sudo mv /tmp/jq /usr/bin/

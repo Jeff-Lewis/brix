@@ -39,7 +39,7 @@ rm -rf /tmp/ec2-ami-tools*
 sudo chown -R root:root /opt/ec2-ami-tools
 
 # more bootstrapping
-sudo apt-get -y install python-pip xfs xfsprogs
+sudo apt-get -y install python-pip
 sudo pip install /tmp/aws-cfn-bootstrap-20140311.tar.gz
 sudo pip install awscli
 sudo mv /tmp/jq /usr/bin/

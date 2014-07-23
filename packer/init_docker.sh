@@ -42,11 +42,12 @@ sudo mv /tmp/ec2-ami-tools*/* /opt/ec2-ami-tools
 rm -rf /tmp/ec2-ami-tools*
 sudo chown -R root:root /opt/ec2-ami-tools
 
-# more bootstrapping
-sudo apt-get -y install python-pip
-# Notice: need to remove old requests for python-pip because this bug
+# Notice: install pip not by using apt-get for sovling a bug
+# (introduced by aws-cfn-bootstrap, version conflict of requests 1.2.3 and 2.x)
 # https://bugs.launchpad.net/ubuntu/+source/python-pip/+bug/1306991
-sudo rm -rf /usr/local/lib/python2.7/dist-packages/requests
+wget -O - https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+# more bootstrapping
+sudo rm -rf /usr/local/lib/python2.7/dist-packages/requests-1.2.3.egg-info/
 sudo pip install /tmp/aws-cfn-bootstrap-20140311.tar.gz
 sudo pip install awscli
 sudo mv /tmp/jq /usr/bin/

@@ -17,12 +17,15 @@
 # limitations under the License.
 #
 
-# Try to fix stupid grub upgrading prompt issue
-sudo rm /boot/grub/menu.lst
+sudo apt-get update -y
 
+# Fix stupid grub upgrading prompt issue
+# https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1323772
+sudo rm /boot/grub/menu.lst
+sudo update-grub-legacy-ec2 -y
+sudo apt-get -y dist-upgrade
 
 # Install ec2-ami-tools
-sudo apt-get update -y
 sudo apt-get upgrade -y
 sudo apt-get install -y unzip
 curl -o /tmp/ec2-ami-tools.zip http://s3.amazonaws.com/ec2-downloads/ec2-ami-tools.zip
@@ -45,7 +48,7 @@ sudo chown -R root:root /opt/ec2-ami-tools
 # Notice: install pip not by using apt-get for sovling a bug
 # (introduced by aws-cfn-bootstrap, version conflict of requests 1.2.3 and 2.x)
 # https://bugs.launchpad.net/ubuntu/+source/python-pip/+bug/1306991
-wget -O - https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+wget -O - https://raw.githubusercontent.com/pypa/pip/1.5.6/contrib/get-pip.py | sudo python
 # more bootstrapping
 sudo rm -rf /usr/local/lib/python2.7/dist-packages/requests-1.2.3.egg-info/
 sudo pip install /tmp/aws-cfn-bootstrap-20140311.tar.gz

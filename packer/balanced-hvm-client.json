@@ -15,6 +15,7 @@
             "region": "us-east-1",
             "ami_regions": ["us-west-1", "us-west-2"],
             "source_ami": "ami-8e7ab6e6",
+            "ami_virtualization_type": "hvm",
             "instance_type": "r3.xlarge",
             "ssh_username": "ubuntu",
             "ami_name": "Balanced Chef-Client Ubuntu 12.04 (EBS store) HVM {{isotime | clean_ami_name}}",

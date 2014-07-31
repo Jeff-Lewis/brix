@@ -6,3 +6,4 @@ packer/balanced-aws.key
 build/
 dist/
 *iml
+.DS_Store

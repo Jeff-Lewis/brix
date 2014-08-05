@@ -14,10 +14,10 @@
             "secret_key": "{{user `aws_secret_access_key`}}",
             "region": "us-east-1",
             "ami_regions": ["us-west-1", "us-west-2"],
-            "source_ami": "ami-aa7ab6c2",
+            "source_ami": "ami-a427efcc",
             "instance_type": "m3.xlarge",
             "ssh_username": "ubuntu",
-            "ami_name": "Balanced Docker Ubuntu 14.04 (EBS store) {{isotime | clean_ami_name}}",
+            "ami_name": "Balanced Docker Ubuntu 14.04.1 (EBS store) {{isotime | clean_ami_name}}",
             "ami_block_device_mappings": [
                 {
                     "device_name": "/dev/sda1",

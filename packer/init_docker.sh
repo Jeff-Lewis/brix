@@ -66,3 +66,13 @@ sudo sh -c "echo deb https://get.docker.io/ubuntu docker main\
 > /etc/apt/sources.list.d/docker.list"
 sudo apt-get update -y
 sudo apt-get install lxc-docker -y
+
+# install docker hub authentication configuration
+sudo mv /tmp/.dockercfg /root/.dockercfg
+sudo chown root:root /root/.dockercfg
+sudo chmod 400 /root/.dockercfg
+sudo cp /root/.dockercfg /home/ubuntu/.dockercfg
+sudo chown ubuntu:ubuntu /home/ubuntu/.dockercfg
+
+# preinstall base docker images
+sudo docker pull balanced/base

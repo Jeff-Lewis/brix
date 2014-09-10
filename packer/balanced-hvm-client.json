@@ -13,7 +13,7 @@
             "access_key": "{{user `aws_access_key_id`}}",
             "secret_key": "{{user `aws_secret_access_key`}}",
             "region": "us-east-1",
-            "ami_regions": ["us-west-1", "us-west-2"],
+            "ami_regions": ["us-east-1", "eu-west-1"],
             "source_ami": "ami-8e7ab6e6",
             "ami_virtualization_type": "hvm",
             "instance_type": "r3.xlarge",
@@ -69,16 +69,17 @@
             "source": "gemrc",
             "destination": "/tmp/gemrc"
         },
-        {
-            "type": "shell",
-            "script": "init.sh"
-        },
+	    {
+		    "type": "shell",
+		    "script": "init.sh"
+	    },
+	    {
+		    "type": "shell",
+		    "script": "common.sh"
+	    },
         {
             "type": "shell",
             "inline": [
-                "sudo apt-get -y update",
-                "sudo apt-get -y install linux-image-generic-lts-raring",
-                "sudo apt-get -y install linux-headers-generic-lts-raring",
                 "sudo reboot",
                 "sleep 60"
             ]

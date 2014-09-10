@@ -72,15 +72,16 @@
             "type": "shell",
             "script": "init.sh"
         },
-        {
-            "type": "shell",
-            "inline": [
-                "sudo apt-get -y update",
-                "sudo apt-get -y install linux-image-generic-lts-raring",
-                "sudo apt-get -y install linux-headers-generic-lts-raring",
-                "sudo reboot",
-                "sleep 60"
-            ]
-        }
+	    {
+		    "type": "shell",
+		    "script": "common.sh"
+	    },
+	    {
+		    "type": "shell",
+		    "inline": [
+			    "sudo reboot",
+			    "sleep 60"
+		    ]
+	    }
     ]
 }

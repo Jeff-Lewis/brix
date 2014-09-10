@@ -1,5 +1,9 @@
 # balanced-infra
 
+**NOTE:** Building images from this will break chef at the moment because it installs 
+a newer version of ohai which does not work like the working version (6.20.0). Sorry 
+for not fixing this, I don't have the heart since we're moving to ansible.
+
 Balanced infrastructure definitions and tools.
 
 ## Building a new AMI
